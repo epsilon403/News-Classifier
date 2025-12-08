@@ -1,0 +1,8 @@
+.venv/
+chromadb_data/
+models/
+bert_multilingual_model_saved/model.safetensors
+*.pkl
+__pycache__/
+*.pyc
+.DS_Store
