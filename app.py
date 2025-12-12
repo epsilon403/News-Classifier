@@ -9,8 +9,8 @@ stop_words = set(stopwords.words('english'))
 custom_stopwords = {'http', 'https', 'amp', 'co', 'new', 'get', 'like', 'would'}
 stop_words.update(custom_stopwords)
 
-svc = joblib.load('svc_model.pkl')
-model = joblib.load('sentence_transformer.pkl')
+svc = joblib.load('models/vc_model.pkl')
+model = joblib.load('models/sentence_transformer.pkl')
 
 label_map = {0: 'World', 1: 'Sports', 2: 'Business', 3: 'Sci/Tech'}
 
