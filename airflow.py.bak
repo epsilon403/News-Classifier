@@ -1,0 +1,33 @@
+from airflow import DAG
+from airflow.providers.standard.operators.bash import BashOperator
+from datetime import datetime
+import chromadb
+import joblib
+from sklearn.svm import SVC
+
+def load_data_split():
+    
+    client = chromadb.PersistentClient(path='./chromadb_data')
+    collection_train = client.get_or_create_collection(name='news_train')
+    collection_test = client.get_or_create_collection(name='news_test')
+    all_data = collection_train.get(
+        include=['embeddings', 'metadatas', 'documents']    
+)
+    return all_data
+
+def train_model():
+    model = SVC()
+    model.fit(load_data_split, df_train['label'])
+
+
+with DAG(
+    dag_id='training_model',
+    start_date=datetime(2025, 12, 12),
+    schedule="@weekly",
+    catchup=False,
+    tags=['training', 'ml']
+) as dag:
+    task1 = BashOperator(
+        task_id="print_hello",
+        bash_command="echo 'hello everyone'"
+    )

@@ -6,3 +6,5 @@ bert_multilingual_model_saved/model.safetensors
 __pycache__/
 *.pyc
 .DS_Store
+cleaned_ag_news_train.csv
+cleaned_ag_news_test.csv
